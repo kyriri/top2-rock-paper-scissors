@@ -15,19 +15,85 @@
     </head>
     <body>
         <p>
-            Jo Ken Po, or Rock Paper Scissors, is the game magically happening on the background...
+            Rock Paper Scissors is the game magically happening in the background...
         </p>
     </body>
     <script>
-        const choices = ["Rock", "Paper", "Scissors"]; 
-        
-        function ComputerChoice () {}
-        function GetUserInput () {}
-        function UserChoice () {}
-        function PlayRound () {}
-        function PlayTournement () {}
-        function AnnounceRoundWinner () {}
-        function AnnounceTournementWinner () {}
+        const choices = ["rock", "paper", "scissors"]; 
+        const player1 = "Computer";
+        const player2 = "User";
+        let scorePlayer1 = 0;
+        let scorePlayer2 = 0;
+
+        let roundNumber = 0;
+
+        function computerChoice () {
+            let choice1 = Math.floor(Math.random() * 2);
+            console.log(`Your opponent, the computer, chose ${choices[choice1]}.`)
+            return choice1; // index of choice array, ie, 0-1-2
+        }
+        function userChoice () {
+            const rawChoice = prompt("Please type your choice (Rock, Paper or Scissors):");
+            let treatedChoice = rawChoice.trim();
+            treatedChoice = treatedChoice.toLowerCase();
+            treatedChoice = treatedChoice.slice(0,1);
+            let finalChoice;
+            switch (treatedChoice) {
+                case "r":
+                    finalChoice = 0;
+                    break;
+                case "p":
+                    finalChoice = 1;
+                    break;
+                case "s":
+                    finalChoice = 2;
+                    break;
+                default:
+                console.log(`That\'s not a valid choice.`)
+            }
+            console.log(`You chose ${choices[finalChoice]}.`)
+            return finalChoice;
+        }
+        function evaluateRoundWinner () {
+            let choice2 = userChoice(); 
+            let choice1 = computerChoice();
+            if (choice1 == choice2) {
+                return "even";
+            }
+            if ( choice1 + choice2 == 2 && choice1 * choice2 == 0) {
+                return (choice1 == 0 ? player1 : player2);
+            }
+            else {
+                return (choice2 > choice1 ? player2 : player1);
+            }
+        }
+        function playRound () {
+            roundNumber++;
+            switch (evaluateRoundWinner()) {
+                case player1:
+                    scorePlayer1++;
+                    console.log(`Round ${roundNumber}: buuh, you lost...`);
+                    break;
+                case player2:
+                    scorePlayer2++;
+                    console.log(`Round ${roundNumber}: yeah, you won!`);
+                    break;
+                default:
+                console.log(`Round ${roundNumber} was even.`); 
+            }
+        }
+        function playTournement () {
+            playRound();
+            playRound();
+            playRound();
+            playRound();
+            playRound();
+            console.log(`Final tally: you ${scorePlayer2} vs ${scorePlayer1} computer.`); 
+        }
+
+        confirm("Would you play Rock-Paper-Scissors with me?")
+            ? playTournement()
+            : alert("That\'s ok. If you change your mind, I\'ll be here!");
 
     </script>
 </html>
