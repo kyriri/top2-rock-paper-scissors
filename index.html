@@ -21,7 +21,7 @@
     <script>
         const choices = ["rock", "paper", "scissors"]; 
         const player1 = "Computer";
-        const player2 = "User";
+        const player2 = "You";
         let scorePlayer1 = 0;
         let scorePlayer2 = 0;
 
@@ -29,7 +29,6 @@
 
         function computerChoice () {
             let choice1 = Math.floor(Math.random() * 3);
-            console.log(`Your opponent, the computer, chose ${choices[choice1]}.`)
             return choice1; // index of choice array, ie, 0-1-2
         }
         function userChoice () {
@@ -51,12 +50,9 @@
                 default:
                 console.log(`That\'s not a valid choice.`)
             }
-            console.log(`You chose ${choices[finalChoice]}.`)
             return finalChoice;
         }
-        function evaluateRoundWinner () {
-            let choice2 = userChoice(); 
-            let choice1 = computerChoice();
+        function evaluateRoundWinner (choice1, choice2) {
             if (choice1 == choice2) {
                 return "even";
             }
@@ -69,17 +65,23 @@
         }
         function playRound () {
             roundNumber++;
-            switch (evaluateRoundWinner()) {
+            let choice2 = userChoice(); 
+            let choice1 = computerChoice();
+            switch (evaluateRoundWinner(choice1, choice2)) {
                 case player1:
                     scorePlayer1++;
-                    console.log(`Round ${roundNumber}: buuh, you lost...`);
+                    console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
+                    console.log(`Buuh, you lost.. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
                     break;
                 case player2:
                     scorePlayer2++;
-                    console.log(`Round ${roundNumber}: yeah, you won!`);
+                    console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
+                    console.log(`Yeah, you won! ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
                     break;
                 default:
-                console.log(`Round ${roundNumber} was even.`); 
+                console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
+                console.log(`That was a tie. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
+                    break;
             }
         }
         function playTournement () {
