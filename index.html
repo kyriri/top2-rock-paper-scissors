@@ -32,7 +32,7 @@
             return choice; // index of choice array, ie, 0-1-2
         }
         function userChoice () {
-            const rawChoice = prompt("Please type your choice (Rock, Paper or Scissors):");
+            const rawChoice = prompt("Please type your choice: \n    r = rock \n    p = paper \n    s = scissors");
             let treatedChoice = rawChoice.trim();
             treatedChoice = treatedChoice.toLowerCase();
             treatedChoice = treatedChoice.slice(0,1);
