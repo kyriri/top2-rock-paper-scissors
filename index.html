@@ -94,6 +94,7 @@
         function playGame () {
             for (i=0; i<roundsInGame; i++) {
                 if (playRound() === null) {i = roundsInGame;}
+                if (scorePlayer1 > roundsInGame / 2 || scorePlayer2 > roundsInGame / 2 ) {i = roundsInGame;}
             }
             console.log(`Final tally: you ${scorePlayer2} vs ${scorePlayer1} computer.`); 
         }
@@ -101,6 +102,8 @@
         confirm(`Would you play Rock-Paper-Scissors with me?\nEach game has ${roundsInGame} rounds.`)
             ? playGame()
             : alert("That\'s ok. If you change your mind, I\'ll be here!");
+
+            // next: add tie-break, stop game when someone wins 3 times
 
     </script>
 </html>
