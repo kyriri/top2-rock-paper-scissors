@@ -35,6 +35,7 @@
         function userChoice () {
             const rawChoice = prompt("Please type your choice: \n    r = rock \n    p = paper \n    s = scissors");
             if (rawChoice === null) {
+                console.log(`%c Oh no! `, 'background: #3D4578; color: #FDDEAF');
                 console.log(`%cYou walked away from the game.`, "color:red;");
                 return null;
             }
@@ -78,16 +79,16 @@
                 case player1:
                     scorePlayer1++;
                     console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
-                    console.log(`Buuh, you lost.. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
+                    console.log(`  Buuh, you lost.. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
                     break;
                 case player2:
                     scorePlayer2++;
                     console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
-                    console.log(`Yeah, you won! ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
+                    console.log(`  Yeah, you won! ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
                     break;
                 default:
                 console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
-                console.log(`That was a tie. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
+                console.log(`  That was a tie. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
                     break;
             }
         }
@@ -96,7 +97,7 @@
                 if (playRound() === null) {i = roundsInGame;}
                 if (scorePlayer1 > roundsInGame / 2 || scorePlayer2 > roundsInGame / 2 ) {i = roundsInGame;}
             }
-            console.log(`Final tally: you ${scorePlayer2} vs ${scorePlayer1} computer.`); 
+            console.log(`%c Final tally: you ${scorePlayer2} vs ${scorePlayer1} computer.`, "background: #FDDEAF;"); 
         }
 
         confirm(`Would you play Rock-Paper-Scissors with me?\nEach game has ${roundsInGame} rounds.`)
