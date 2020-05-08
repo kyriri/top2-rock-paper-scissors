@@ -20,6 +20,7 @@
     </body>
     <script>
         const choices = ["rock", "paper", "scissors"]; 
+        const roundsInGame = 5;
         const player1 = "Computer";
         const player2 = "You";
         let scorePlayer1 = 0;
@@ -33,6 +34,10 @@
         }
         function userChoice () {
             const rawChoice = prompt("Please type your choice: \n    r = rock \n    p = paper \n    s = scissors");
+            if (rawChoice === null) {
+                console.log(`%cYou walked away from the game.`, "color:red;");
+                return null;
+            }
             let treatedChoice = rawChoice.trim();
             treatedChoice = treatedChoice.toLowerCase();
             treatedChoice = treatedChoice.slice(0,1);
@@ -54,9 +59,8 @@
             return finalChoice;
         }
         function evaluateRoundWinner (choice1, choice2) {
-            if (choice1 == choice2) {
-                return "even";
-            }
+            if (choice2 === null) { return null; }
+            if (choice1 == choice2) {return "even"; }
             if ( choice1 + choice2 == 2 && choice1 * choice2 == 0) {
                 return (choice1 == 0 ? player1 : player2);
             }
@@ -69,6 +73,8 @@
             let choice2 = userChoice(); 
             let choice1 = randomChoice();
             switch (evaluateRoundWinner(choice1, choice2)) {
+                case null:
+                    return null;
                 case player1:
                     scorePlayer1++;
                     console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
@@ -85,17 +91,15 @@
                     break;
             }
         }
-        function playTournement () {
-            playRound();
-            playRound();
-            playRound();
-            playRound();
-            playRound();
+        function playGame () {
+            for (i=0; i<roundsInGame; i++) {
+                if (playRound() === null) {i = roundsInGame;}
+            }
             console.log(`Final tally: you ${scorePlayer2} vs ${scorePlayer1} computer.`); 
         }
 
         confirm("Would you play Rock-Paper-Scissors with me?")
-            ? playTournement()
+            ? playGame()
             : alert("That\'s ok. If you change your mind, I\'ll be here!");
 
     </script>
