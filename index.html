@@ -49,7 +49,7 @@
                     break;
                 default:
                     finalChoice = randomChoice();
-                    console.log(`Your choice was not recognized, you were randomly assigned ${choices[finalChoice]}.`)
+                    console.log(`Your choice was not recognized,%c you were randomly assigned ${choices[finalChoice]}.`, "color:red;");
             }
             return finalChoice;
         }
