@@ -28,11 +28,11 @@
         let scorePlayer1 = 0;
         let scorePlayer2 = 0;
         
-        function randomChoice () {
+        function getRandomChoice () {
             let choice = Math.floor(Math.random() * 3);
             return choice; // index of choice array, ie, 0-1-2
         }
-        function userChoice () {
+        function getUserChoice () {
             const rawChoice = prompt("Please type your choice: \n    r = rock \n    p = paper \n    s = scissors");
             if (rawChoice === null) {
                 console.log(`%c Oh no! `, 'background: #3D4578; color: #FDDEAF');
@@ -54,7 +54,7 @@
                     finalChoice = 2;
                     break;
                 default:
-                    finalChoice = randomChoice();
+                    finalChoice = getRandomChoice();
                     console.log(`Your choice was not recognized,%c you were randomly assigned ${choices[finalChoice]}.`, "color:red;");
             }
             return finalChoice;
@@ -71,8 +71,8 @@
         }
         function playRound () {
             roundNumber++;
-            let choice2 = userChoice(); 
-            let choice1 = randomChoice();
+            let choice2 = getUserChoice(); 
+            let choice1 = getRandomChoice();
             switch (evaluateRoundWinner(choice1, choice2)) {
                 case null:
                     return null;
