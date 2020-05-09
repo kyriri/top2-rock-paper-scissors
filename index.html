@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
-        <title>Jo Ken Po!</title>
+        <title>Rock Paper Scissors!</title>
         <style>
             body{
                 color: #3D4578;
@@ -60,8 +60,8 @@
             return finalChoice;
         }
         function evaluateRoundWinner (choice1, choice2) {
-            if (choice2 === null) { return null }
-            if (choice1 == choice2) {return "even" }
+            if (choice2 === null) { return null; }
+            if (choice1 == choice2) {return "even"; }
             if ( choice1 + choice2 == 2 && choice1 * choice2 == 0) {
                 return (choice1 == 0 ? player1 : player2);
             }
@@ -96,7 +96,7 @@
             for (i=0; i<roundsInGame; i++) {
                 roundsLeft = roundsInGame - roundNumber;
                 if (Math.abs(scorePlayer2 - scorePlayer1) > roundsLeft) {break;}
-                else {if (playRound() === null) {break;} }
+                else {if (playRound() === null) {return;} }
             }
             while (scorePlayer1 === scorePlayer2) {
                 console.log(`%c Tie-break! `, 'background: #3D4578; color: #FDDEAF');
