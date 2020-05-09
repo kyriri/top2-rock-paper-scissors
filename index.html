@@ -20,14 +20,14 @@
     </body>
     <script>
         const choices = ["rock", "paper", "scissors"]; 
-        const roundsInGame = 5;
         const player1 = "Computer";
         const player2 = "You";
+
+        const roundsInGame = 5;
+        let roundNumber = 0;
         let scorePlayer1 = 0;
         let scorePlayer2 = 0;
-
-        let roundNumber = 0;
-
+        
         function randomChoice () {
             let choice = Math.floor(Math.random() * 3);
             return choice; // index of choice array, ie, 0-1-2
@@ -60,8 +60,8 @@
             return finalChoice;
         }
         function evaluateRoundWinner (choice1, choice2) {
-            if (choice2 === null) { return null; }
-            if (choice1 == choice2) {return "even"; }
+            if (choice2 === null) { return null }
+            if (choice1 == choice2) {return "even" }
             if ( choice1 + choice2 == 2 && choice1 * choice2 == 0) {
                 return (choice1 == 0 ? player1 : player2);
             }
@@ -94,17 +94,18 @@
         }
         function playGame () {
             for (i=0; i<roundsInGame; i++) {
-                if (playRound() === null) {i = roundsInGame;}
-                if (scorePlayer1 > roundsInGame / 2 || scorePlayer2 > roundsInGame / 2 ) {i = roundsInGame;}
+                roundsLeft = roundsInGame - roundNumber;
+                if (Math.abs(scorePlayer2 - scorePlayer1) > roundsLeft) {break;}
+                else {if (playRound() === null) {break;} }
             }
-            console.log(`%c Final tally: you ${scorePlayer2} vs ${scorePlayer1} computer.`, "background: #FDDEAF;"); 
+            console.log(`%c Final tally: ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}.`, "background: #FDDEAF;"); 
         }
 
         confirm(`Would you play Rock-Paper-Scissors with me?\nEach game has ${roundsInGame} rounds.`)
             ? playGame()
             : alert("That\'s ok. If you change your mind, I\'ll be here!");
 
-            // next: add tie-break, stop game when someone wins 3 times
+            // next: add tie-break
 
     </script>
 </html>
