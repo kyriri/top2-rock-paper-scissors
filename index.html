@@ -98,14 +98,16 @@
                 if (Math.abs(scorePlayer2 - scorePlayer1) > roundsLeft) {break;}
                 else {if (playRound() === null) {break;} }
             }
+            while (scorePlayer1 === scorePlayer2) {
+                console.log(`%c Tie-break! `, 'background: #3D4578; color: #FDDEAF');
+                if (playRound() === null) {break;}
+            }
             console.log(`%c Final tally: ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}.`, "background: #FDDEAF;"); 
         }
 
         confirm(`Would you play Rock-Paper-Scissors with me?\nEach game has ${roundsInGame} rounds.`)
             ? playGame()
             : alert("That\'s ok. If you change your mind, I\'ll be here!");
-
-            // next: add tie-break
 
     </script>
 </html>
