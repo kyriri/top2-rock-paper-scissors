@@ -93,7 +93,7 @@
             }
         }
         function playGame () {
-            for (i=0; i<roundsInGame; i++) {
+            for (let i=0; i<roundsInGame; i++) {
                 roundsLeft = roundsInGame - roundNumber;
                 if (Math.abs(scorePlayer2 - scorePlayer1) > roundsLeft) {break;}
                 else {if (playRound() === null) {return;} }
