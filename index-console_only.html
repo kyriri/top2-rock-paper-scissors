@@ -10,7 +10,7 @@
                 font-size: 11px;
                 background: #F3F0E7;
             }
-            /* color cheme: https://www.schemecolor.com/higher-satisfaction.php */
+            /*color cheme: https://www.schemecolor.com/higher-satisfaction.php */
         </style>
     </head>
     <body>
@@ -93,7 +93,7 @@
             }
         }
         function playGame () {
-            for (let i = 0; i < roundsInGame; i++) {
+            for (let i=0; i < roundsInGame; i++) {
                 roundsLeft = roundsInGame - roundNumber;
                 if (Math.abs(scorePlayer2 - scorePlayer1) > roundsLeft) {break;}
                 else {if (playRound() === null) {return;} }
