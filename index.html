@@ -25,19 +25,15 @@
                 display: flex;
                 justify-content: space-between;
             }
-            .button {
-                flex-basis: 15%;
+            button {
                 height: 3.5rem;
                 text-align: center;
-                background: #B8D8E1;
-                border: .05rem solid black;
                 border-radius: .5rem;
                 padding: .5rem;
-                transition: all .7s ease;
+                transition: all .2s ease;
             }
-
-            kbd {
-                font-size: 1.6rem;
+            button:hover {
+                font-weight: bold;
             }
             .description {
                 font-size: .9rem;
@@ -56,29 +52,26 @@
             </main> 
             <div id='score'></div>
             <nav>
-                <div class='button'>
-                    <kbd>R</kbd>
-                    <p class='description'>rock</p class='description'>
-                </div>
-                <div class='button'>
-                    <kbd>P</kbd>
-                    <p class='description'>paper</p class='description'>
-                </div>
-                <div class='button'>
-                    <kbd>S</kbd>
-                    <p class='description'>scissors</p class='description'>
-                </div>
-                <div class='button'>
-                    <kbd>SPACE</kbd>
-                    <p class='description'>random</p class='description'>
-                </div>
+                <div><button id='rock'>
+                    rock
+                </button></div>
+                <div><button id='paper'>
+                    paper
+                </button></div>
+                <div><button id='scissors'>
+                    scissors
+                </button></div>
+                <div><button id='random'>
+                    random
+                </button></div>
             </nav>
 
         </div>
     </body>
 
     <script>
-        /*
+         
+        /* all old code here below
         const choices = ["rock", "paper", "scissors"]; 
         const player1 = "Computer";
         const player2 = "You";
