@@ -65,7 +65,7 @@
                     random
                 </button></div>
             </nav>
-
+            <div id='logbox'></div>
         </div>
     </body>
 
@@ -80,7 +80,7 @@
         let scorePlayer1 = 0;
         let scorePlayer2 = 0;
 
-        const logBox = document.querySelector('main');
+        const logBox = document.getElementById('logbox');
         const scoreBox = document.getElementById('score');
 
         const buttonsNode = document.querySelectorAll('button');
@@ -155,10 +155,5 @@
             }
             console.log(`%c Final tally: ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}.`, 'background: #FDDEAF;'); 
         }
-/*
-        confirm(`Would you play Rock-Paper-Scissors with me?\nEach game has ${roundsInGame} rounds.`)
-            ? playGame()
-            : alert('That\'s ok. If you change your mind, I\'ll be here!');
-*/
     </script>
 </html>
