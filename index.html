@@ -5,21 +5,18 @@
         <title>Rock Paper Scissors!</title>
         <style>
             body {
+                background: #F3F0E7;
                 color: #3D4578;
                 font-family: Avenir, 'Lucida Sans', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                 font-size: 10px;
-                background: #F3F0E7;
             }
-            header, main, div#score {
-                font-size: 1rem;
+            header, div#announcer, div#score {
                 background: #B8D8E1;
+                font-size: 1rem;
                 border: .05rem solid black;
                 border-radius: .5rem;
                 margin: .5rem 0;
                 padding: .5rem;
-            }
-            main p {
-                margin: 0;
             }
             nav {
                 display: flex;
@@ -35,22 +32,14 @@
             button:hover {
                 font-weight: bold;
             }
-            .description {
-                font-size: .9rem;
-                text-transform: uppercase;
-                margin: 0;
-                padding-top: .1rem;
-            }
             /* color cheme: https://www.schemecolor.com/higher-satisfaction.php */
         </style>
     </head>
     <body>
         <div>
             <header>Rock Paper Scissors</header>
-            <main id='announcer'>
-                5 rounds challenge!
-            </main> 
-            <div id='score'></div>
+            <div id='announcer'>I challenge you!</div> 
+            <div id='score'>Score</div>
             <nav>
                 <div><button id='rock'>
                     rock
@@ -70,20 +59,17 @@
     </body>
 
     <script>
-         
         const choices = ['rock', 'paper', 'scissors']; 
         const player1 = 'Computer';
         const player2 = 'You';
 
-        const roundsInGame = 5;
         let roundNumber = 0;
         let scorePlayer1 = 0;
         let scorePlayer2 = 0;
 
-        const annouceBox = document.querySelector('main');
+        const annouceBox = document.getElementById('announcer');
         const scoreBox = document.getElementById('score');
         const logBox = document.getElementById('logbox');
-
 
         const buttonsNode = document.querySelectorAll('button');
         buttonsNode.forEach(button => button.addEventListener('click', playRound));
@@ -123,11 +109,12 @@
                 annouceBox.innerHTML = 'New challenge';
                 scoreBox.innerHTML = 'Let\'s start!';
                 logBox.innerHTML = ''; }
-            roundNumber++;
+            roundNumber += 1;
+
             let clickedSelection = e.target.id;
             let choice2 = getUserChoice(clickedSelection); 
             let choice1 = getRandomChoice();
-
+            let winner;
             const log = document.createElement('p');
             log.classList.add('content');
 
@@ -148,10 +135,9 @@
                     break;
             }
             logBox.appendChild(log);
-            let winner;
             if (scorePlayer1 === 3 || scorePlayer2 === 3) {
                 scorePlayer1 === 3 ? winner = player1 : winner = player2;
-                document.querySelector('main').innerHTML = `Game over! ${winner} won!`;
+                annouceBox.innerHTML = `Game over! ${winner} won!`;
                 reset();
             }
         }
@@ -160,6 +146,5 @@
             scorePlayer1 = 0;
             scorePlayer2 = 0;
         }
-        
     </script>
 </html>
