@@ -48,7 +48,7 @@
         <div>
             <header>Rock Paper Scissors</header>
             <main id='announcer'>
-                <p>Would you play Rock-Paper-Scissors with me?</p>
+                5 rounds challenge!
             </main> 
             <div id='score'></div>
             <nav>
@@ -80,8 +80,10 @@
         let scorePlayer1 = 0;
         let scorePlayer2 = 0;
 
-        const logBox = document.getElementById('logbox');
+        const annouceBox = document.querySelector('main');
         const scoreBox = document.getElementById('score');
+        const logBox = document.getElementById('logbox');
+
 
         const buttonsNode = document.querySelectorAll('button');
         buttonsNode.forEach(button => button.addEventListener('click', playRound));
@@ -117,6 +119,10 @@
             }
         }
         function playRound (e) {
+            if (roundNumber === 0) { 
+                annouceBox.innerHTML = 'New challenge';
+                scoreBox.innerHTML = 'Let\'s start!';
+                logBox.innerHTML = ''; }
             roundNumber++;
             let clickedSelection = e.target.id;
             let choice2 = getUserChoice(clickedSelection); 
@@ -127,12 +133,12 @@
 
             switch (evaluateRoundWinner(choice1, choice2)) {
                 case player1:
-                    scorePlayer1++;
+                    scorePlayer1 += 1;
                     log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]} - Buuh, you lost...`;
                     scoreBox.innerHTML = `${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`;
                     break;
                 case player2:
-                    scorePlayer2++;
+                    scorePlayer2 += 1;
                     log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]} - Yeah, you won!`;
                     scoreBox.innerHTML = `${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`; 
                     break;
@@ -142,18 +148,18 @@
                     break;
             }
             logBox.appendChild(log);
-        }
-        function playGame () {
-            for (let i = 0; i < roundsInGame; i++) {
-                roundsLeft = roundsInGame - roundNumber;
-                if (Math.abs(scorePlayer2 - scorePlayer1) > roundsLeft) {break;}
-                else {if (playRound() === null) {return;} }
+            let winner;
+            if (scorePlayer1 === 3 || scorePlayer2 === 3) {
+                scorePlayer1 === 3 ? winner = player1 : winner = player2;
+                document.querySelector('main').innerHTML = `Game over! ${winner} won!`;
+                reset();
             }
-            while (scorePlayer1 === scorePlayer2) {
-                console.log(`%c Tie-break! `, 'background: #3D4578; color: #FDDEAF');
-                if (playRound() === null) {break;}
-            }
-            console.log(`%c Final tally: ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}.`, 'background: #FDDEAF;'); 
         }
+        function reset() {
+            roundNumber = 0;
+            scorePlayer1 = 0;
+            scorePlayer2 = 0;
+        }
+        
     </script>
 </html>
