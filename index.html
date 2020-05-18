@@ -128,17 +128,17 @@
             switch (evaluateRoundWinner(choice1, choice2)) {
                 case player1:
                     scorePlayer1++;
-                    log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`;
-                    scoreBox.innerHTML = `Buuh, you lost... ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`;
+                    log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]} - Buuh, you lost...`;
+                    scoreBox.innerHTML = `${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`;
                     break;
                 case player2:
                     scorePlayer2++;
-                    log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`;
-                    scoreBox.innerHTML = `Yeah, you won! ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`; 
+                    log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]} - Yeah, you won!`;
+                    scoreBox.innerHTML = `${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`; 
                     break;
                 default:
-                log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`;
-                scoreBox.innerHTML = `That was a tie. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`;
+                log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]} - That was a tie.`;
+                scoreBox.innerHTML = `${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`;
                     break;
             }
             logBox.appendChild(log);
