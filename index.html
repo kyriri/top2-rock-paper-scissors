@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
     <head>
-        <meta charset="utf-8"/>
+        <meta charset='utf-8'/>
         <title>Rock Paper Scissors!</title>
         <style>
             body {
@@ -71,50 +71,41 @@
 
     <script>
          
-        /* all old code here below
-        const choices = ["rock", "paper", "scissors"]; 
-        const player1 = "Computer";
-        const player2 = "You";
+        const choices = ['rock', 'paper', 'scissors']; 
+        const player1 = 'Computer';
+        const player2 = 'You';
 
         const roundsInGame = 5;
         let roundNumber = 0;
         let scorePlayer1 = 0;
         let scorePlayer2 = 0;
+
+        const buttonsNode = document.querySelectorAll('button');
+        buttonsNode.forEach(button => button.addEventListener('click', playRound));
         
         function getRandomChoice () {
             let choice = Math.floor(Math.random() * 3);
             return choice; // index of choice array, ie, 0-1-2
         }
-        function getUserChoice () {
-            const rawChoice = prompt("Please type your choice: \n    r = rock \n    p = paper \n    s = scissors");
-            if (rawChoice === null) {
-                console.log(`%c Oh no! `, 'background: #3D4578; color: #FDDEAF');
-                console.log(`%cYou walked away from the game.`, "color:red;");
-                return null;
-            }
-            let treatedChoice = rawChoice.trim();
-            treatedChoice = treatedChoice.toLowerCase();
-            treatedChoice = treatedChoice.slice(0,1);
+        function getUserChoice (click) {
             let finalChoice;
-            switch (treatedChoice) {
-                case "r":
+            switch (click) {
+                case 'rock':
                     finalChoice = 0;
                     break;
-                case "p":
+                case 'paper':
                     finalChoice = 1;
                     break;
-                case "s":
+                case 'scissors':
                     finalChoice = 2;
                     break;
                 default:
                     finalChoice = getRandomChoice();
-                    console.log(`Your choice was not recognized,%c you were randomly assigned ${choices[finalChoice]}.`, "color:red;");
             }
             return finalChoice;
         }
         function evaluateRoundWinner (choice1, choice2) {
-            if (choice2 === null) { return null; }
-            if (choice1 == choice2) {return "even"; }
+            if (choice1 == choice2) {return 'even'; }
             if ( choice1 + choice2 == 2 && choice1 * choice2 == 0) {
                 return (choice1 == 0 ? player1 : player2);
             }
@@ -122,13 +113,12 @@
                 return (choice2 > choice1 ? player2 : player1);
             }
         }
-        function playRound () {
+        function playRound (e) {
             roundNumber++;
-            let choice2 = getUserChoice(); 
+            let clickedSelection = e.target.id;
+            let choice2 = getUserChoice(clickedSelection); 
             let choice1 = getRandomChoice();
             switch (evaluateRoundWinner(choice1, choice2)) {
-                case null:
-                    return null;
                 case player1:
                     scorePlayer1++;
                     console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
@@ -155,12 +145,12 @@
                 console.log(`%c Tie-break! `, 'background: #3D4578; color: #FDDEAF');
                 if (playRound() === null) {break;}
             }
-            console.log(`%c Final tally: ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}.`, "background: #FDDEAF;"); 
+            console.log(`%c Final tally: ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}.`, 'background: #FDDEAF;'); 
         }
-
+/*
         confirm(`Would you play Rock-Paper-Scissors with me?\nEach game has ${roundsInGame} rounds.`)
             ? playGame()
-            : alert("That\'s ok. If you change your mind, I\'ll be here!");
+            : alert('That\'s ok. If you change your mind, I\'ll be here!');
 */
     </script>
 </html>
