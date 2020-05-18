@@ -80,6 +80,9 @@
         let scorePlayer1 = 0;
         let scorePlayer2 = 0;
 
+        const logBox = document.querySelector('main');
+        const scoreBox = document.getElementById('score');
+
         const buttonsNode = document.querySelectorAll('button');
         buttonsNode.forEach(button => button.addEventListener('click', playRound));
         
@@ -118,22 +121,27 @@
             let clickedSelection = e.target.id;
             let choice2 = getUserChoice(clickedSelection); 
             let choice1 = getRandomChoice();
+
+            const log = document.createElement('p');
+            log.classList.add('content');
+
             switch (evaluateRoundWinner(choice1, choice2)) {
                 case player1:
                     scorePlayer1++;
-                    console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
-                    console.log(`  Buuh, you lost.. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
+                    log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`;
+                    scoreBox.innerHTML = `Buuh, you lost... ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`;
                     break;
                 case player2:
                     scorePlayer2++;
-                    console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
-                    console.log(`  Yeah, you won! ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
+                    log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`;
+                    scoreBox.innerHTML = `Yeah, you won! ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`; 
                     break;
                 default:
-                console.log(`Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`);
-                console.log(`  That was a tie. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`);
+                log.textContent = `Round ${roundNumber} - ${player2}: ${choices[choice2]} - ${player1}: ${choices[choice1]}`;
+                scoreBox.innerHTML = `That was a tie. ${player2} ${scorePlayer2} vs ${scorePlayer1} ${player1}`;
                     break;
             }
+            logBox.appendChild(log);
         }
         function playGame () {
             for (let i = 0; i < roundsInGame; i++) {
